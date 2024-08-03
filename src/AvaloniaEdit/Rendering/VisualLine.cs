@@ -786,7 +786,7 @@ namespace AvaloniaEdit.Rendering
     // TODO: can inherit from Layoutable, but dev tools crash
     internal sealed class VisualLineDrawingVisual : Control
     {
-        private double LineSpacing = 1.5;
+        private double LineSpacing = 1;  // مقدار غیر یک فعلا در اسکرول سلکشن رو به پایین مشکل ساز است
         public VisualLine VisualLine { get; }
         public double LineHeight { get; }
         internal bool IsAdded { get; set; }

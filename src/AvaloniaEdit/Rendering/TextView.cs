@@ -74,7 +74,7 @@ namespace AvaloniaEdit.Rendering
         /// </summary>
         public TextView()
         {
-            LineSpacing = 1.5;
+            LineSpacing = 1; // مقدار غیر یک فعلا در اسکرول سلکشن رو به پایین مشکل ساز است
             Services.AddService(this);
 
             TextLayer = new TextLayer(this);
