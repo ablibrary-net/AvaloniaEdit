@@ -59,14 +59,16 @@ namespace AvaloniaEdit.Utils
 				emSize = TextElement.GetFontSize(element);
 			if (foreground == null)
 				foreground = TextElement.GetForeground(element);
-			
-			return new FormattedText(
-				text,
-				CultureInfo.CurrentCulture,
-				FlowDirection.LeftToRight,
-				typeface,
-				emSize.Value,
-				foreground);
-		}
-	}
+            //CultureInfo Ar = new CultureInfo("ar-SA");// Saudi Arabia //Newjj	
+            return new FormattedText(
+                text,
+                CultureInfo.CurrentCulture,
+                FlowDirection.LeftToRight,
+                //Ar,//Newjj	
+                //FlowDirection.RightToLeft, //Newjj	
+                typeface,
+                emSize.Value,
+                foreground);
+        }
+    }
 }

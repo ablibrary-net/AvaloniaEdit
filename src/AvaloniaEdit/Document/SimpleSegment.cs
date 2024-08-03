@@ -165,6 +165,8 @@ namespace AvaloniaEdit.Document
         /// <inheritdoc/>
         public override string ToString()
         {
+            //CultureInfo Ar = new CultureInfo("ar-SA");// Saudi Arabia //Newjj	
+            //return "[Offset=" + Offset.ToString(Ar) + ", EndOffset=" + EndOffset.ToString(Ar) + "]";
             return "[Offset=" + Offset.ToString(CultureInfo.InvariantCulture) + ", EndOffset=" + EndOffset.ToString(CultureInfo.InvariantCulture) + "]";
         }
     }

@@ -948,9 +948,39 @@ namespace AvaloniaEdit.Editing
 
         // Make life easier for text editor extensions that use a different cursor based on the pressed modifier keys.
         /// <inheritdoc/>
+        //protected override void OnKeyDown(KeyEventArgs e)
+        //{
+        //    base.OnKeyDown(e);
+        //    TextView.InvalidateCursorIfPointerWithinTextView();
+        //}
+        //NEWJJ
         protected override void OnKeyDown(KeyEventArgs e)
         {
-            base.OnKeyDown(e);
+            if (LoopVoid)
+            {
+                base.OnKeyDown(e); // Call base method to keep default behavior
+                LoopVoid = false;
+                return;
+            }
+            if (e.Key == Key.Right || e.Key == Key.Left)
+            {
+                LoopVoid = true;
+                var shift = (e.KeyModifiers == KeyModifiers.Shift);
+                var keyEventArgs = new KeyEventArgs
+                {
+                    RoutedEvent = InputElement.KeyDownEvent,
+                    Key = (e.Key == Key.Right ? Key.Left : Key.Right),
+                    Source = this,
+                    KeyModifiers = (shift ? KeyModifiers.Shift : KeyModifiers.None)
+                };
+                this.RaiseEvent(keyEventArgs);
+                LoopVoid = false;
+                e.Handled = true; // Mark the event as handled
+            }
+            else
+            {
+                base.OnKeyDown(e); // Call base method to keep default behavior
+            }
             TextView.InvalidateCursorIfPointerWithinTextView();
         }
 
@@ -965,9 +995,40 @@ namespace AvaloniaEdit.Editing
         }
 
         /// <inheritdoc/>
+        //protected override void OnKeyUp(KeyEventArgs e)
+        //{
+        //    base.OnKeyUp(e);
+        //    TextView.InvalidateCursorIfPointerWithinTextView();
+        //}
+
+        bool LoopVoid;
         protected override void OnKeyUp(KeyEventArgs e)
         {
-            base.OnKeyUp(e);
+            if (LoopVoid)
+            {
+                base.OnKeyUp(e); // Call base method to keep default behavior
+                LoopVoid = false;
+                return;
+            }
+            if (e.Key == Key.Right || e.Key == Key.Left)
+            {
+                var shift = (e.KeyModifiers == KeyModifiers.Shift);
+                LoopVoid = true;
+                var keyEventArgs = new KeyEventArgs
+                {
+                    RoutedEvent = InputElement.KeyUpEvent,
+                    Key = (e.Key == Key.Right ? Key.Left : Key.Right),
+                    Source = this,
+                    KeyModifiers = (shift ? KeyModifiers.Shift : KeyModifiers.None)
+                };
+                this.RaiseEvent(keyEventArgs);
+                LoopVoid = false;
+                e.Handled = true; // Mark the event as handled
+            }
+            else
+            {
+                base.OnKeyUp(e); // Call base method to keep default behavior
+            }
             TextView.InvalidateCursorIfPointerWithinTextView();
         }
 

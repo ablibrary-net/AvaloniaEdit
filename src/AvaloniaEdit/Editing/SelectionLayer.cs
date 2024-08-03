@@ -52,7 +52,9 @@ namespace AvaloniaEdit.Editing
                 AlignToWholePixels = true,
                 BorderThickness = selectionBorder?.Thickness ?? 0,
                 ExtendToFullWidthAtLineEnd = _textArea.Selection.EnableVirtualSpace,
-                CornerRadius = _textArea.SelectionCornerRadius
+                CornerRadius = 0
+                // _textArea.SelectionCornerRadius
+                //newjj mohammad
             };
 
             foreach (var segment in _textArea.Selection.Segments)

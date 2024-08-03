@@ -43,18 +43,32 @@ namespace AvaloniaEdit.Demo
         private int _currentTheme = (int)ThemeName.DarkPlus;
         private CustomMargin _customMargin;
 
+        
+        
         public MainWindow()
         {
             InitializeComponent();
 
             _textEditor = this.FindControl<TextEditor>("Editor");
-            _textEditor.HorizontalScrollBarVisibility = Avalonia.Controls.Primitives.ScrollBarVisibility.Visible;
+            //_textEditor.HorizontalScrollBarVisibility = Avalonia.Controls.Primitives.ScrollBarVisibility.Visible;
+            _textEditor.HorizontalScrollBarVisibility = Avalonia.Controls.Primitives.ScrollBarVisibility.Auto;
+            _textEditor.VerticalScrollBarVisibility = Avalonia.Controls.Primitives.ScrollBarVisibility.Auto;
+            
+
             _textEditor.Background = Brushes.Transparent;
             _textEditor.ShowLineNumbers = true;
-            _textEditor.ContextMenu = new ContextMenu
+            
+            // newjj mohammad             
+            //_textEditor.ContextFlyout = new MenuFlyout()
+             _textEditor.ContextMenu = new ContextMenu
             {
                 ItemsSource = new List<MenuItem>
                 {
+                    /*new MenuItem { Header = "Copy", InputGesture = new KeyGesture(Key.C, KeyModifiers.Control) , Command = ApplicationCommands.Copy},
+                    new MenuItem { Header = "Paste", InputGesture = new KeyGesture(Key.V, KeyModifiers.Control) ,Command = ApplicationCommands.Paste},
+                    new MenuItem { Header = "Cut", InputGesture = new KeyGesture(Key.X, KeyModifiers.Control) ,Command = ApplicationCommands.Cut},
+                    new MenuItem { Header = "select All" ,Command = new RoutedCommand("Copy",)}*/
+                    // newjj mohammad old:
                     new MenuItem { Header = "Copy", InputGesture = new KeyGesture(Key.C, KeyModifiers.Control) },
                     new MenuItem { Header = "Paste", InputGesture = new KeyGesture(Key.V, KeyModifiers.Control) },
                     new MenuItem { Header = "Cut", InputGesture = new KeyGesture(Key.X, KeyModifiers.Control) }
@@ -268,11 +282,24 @@ namespace AvaloniaEdit.Demo
             }
         }
 
-        private void InitializeComponent()
+
+        //newjj mohammad
+        public void InitializeComponent(bool loadXaml = true, bool attachDevTools = true)
         {
             AvaloniaXamlLoader.Load(this);
-        }
 
+            // ...
+
+            if (attachDevTools)
+            {
+                 this.AttachDevTools();
+            }
+
+            // ...
+            //newjj mohammad
+
+        }
+        
         private void AddControlButton_Click(object sender, RoutedEventArgs e)
         {
             _generator.controls.Add(new Pair(_textEditor.CaretOffset, new Button() { Content = "Click me", Cursor = Cursor.Default }));

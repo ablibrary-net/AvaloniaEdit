@@ -10,8 +10,9 @@
     <!--<Setter Property="SelectionForeground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />-->
     <Setter Property="Template">
       <ControlTemplate>
-        <DockPanel Focusable="False" Background="{TemplateBinding Background}">
-          <ItemsControl DockPanel.Dock="Left"
+        <!-- newjj mohammad some paddings and comments and dockpanel into border-->
+        <Border Padding="0"  Focusable="False" Background="{TemplateBinding Background}">
+          <!--<ItemsControl DockPanel.Dock="Right"
                         Focusable="False"
                         ItemsSource="{TemplateBinding LeftMargins}">
             <ItemsControl.ItemsPanel>
@@ -19,11 +20,12 @@
                 <StackPanel Orientation="Horizontal" />
               </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
-          </ItemsControl>
-          <ContentPresenter Name="PART_CP" Cursor="IBeam"
+          </ItemsControl>-->
+          <ContentPresenter Padding="5" Name="PART_CP" Cursor="IBeam"
                             Focusable="False" Background="{TemplateBinding Background}" />
-        </DockPanel>
+        </Border>
       </ControlTemplate>
+      <!-- jj new mohammad -->
     </Setter>
   </ControlTheme>
 </ResourceDictionary>

@@ -59,7 +59,9 @@ namespace AvaloniaEdit.Rendering
 			
 			_backgroundBrush = textRunProperties.BackgroundBrush;
 			_baselineAlignment = textRunProperties.BaselineAlignment;
+
 			_cultureInfo = textRunProperties.CultureInfo;
+	 // _cultureInfo = new CultureInfo("fa-IR"); //newjj mohammad
 			//fontHintingEmSize = textRunProperties.FontHintingEmSize;
 			_fontRenderingEmSize = textRunProperties.FontRenderingEmSize;
 			_foregroundBrush = textRunProperties.ForegroundBrush;

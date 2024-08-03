@@ -871,6 +871,10 @@ namespace AvaloniaEdit.Rendering
         /// <inheritdoc/>
         protected override Size MeasureOverride(Size availableSize)
         {
+//newjj mohammad caret position
+            availableSize = new Size(availableSize.Width - 10, availableSize.Height -10);
+            
+            
             // We don't support infinite available width, so we'll limit it to 32000 pixels.
             if (availableSize.Width > 32000)
                 availableSize = availableSize.WithWidth(32000);
@@ -880,8 +884,9 @@ namespace AvaloniaEdit.Rendering
                 ClearVisualLines();
             }
 
-            _lastAvailableSize = availableSize;
-
+             _lastAvailableSize = availableSize ;
+// newjj mohammad commented
+            //_lastAvailableSize = new Size(availableSize.Width + 10, availableSize.Height + 10);
             foreach (var layer in Layers)
             {
                 layer.Measure(availableSize);
@@ -1022,10 +1027,13 @@ namespace AvaloniaEdit.Rendering
         private TextRunProperties CreateGlobalTextRunProperties()
         {
             var p = new GlobalTextRunProperties();
+            //CultureInfo Ar = new CultureInfo("ar-SA");// Saudi Arabia //Newjj	
+
             p.typeface = this.CreateTypeface();
             p.fontRenderingEmSize = FontSize;
             p.foregroundBrush = GetValue(TextElement.ForegroundProperty);
             ExtensionMethods.CheckIsFrozen(p.foregroundBrush);
+            //p.cultureInfo = Ar;//Newjj
             p.cultureInfo = CultureInfo.CurrentCulture;
             return p;
         }
@@ -1162,6 +1170,7 @@ namespace AvaloniaEdit.Rendering
 
             foreach (var layer in Layers)
             {
+                // newjj Point(0, 0), finalSize));  makes caretlayer and textlayer and selectionlayer changes
                 layer.Arrange(new Rect(new Point(0, 0), finalSize));
             }
 
@@ -1690,7 +1699,7 @@ namespace AvaloniaEdit.Rendering
             return null;
         }
         #endregion
-
+// newjj mohammad maybe javab inja bashe
         #region Visual Position <-> TextViewPosition
         /// <summary>
         /// Gets the visual position from a text view position.

@@ -270,7 +270,9 @@ namespace AvaloniaEdit.Document
         {
             if (IsDeleted)
                 return "[DocumentLine deleted]";
+            //CultureInfo Ar = new CultureInfo("ar-SA");// Saudi Arabia //Newjj	
             return string.Format(
+                //Ar, // Newjj
                 CultureInfo.InvariantCulture,
                 "[DocumentLine Number={0} Offset={1} Length={2}]", LineNumber, Offset, Length);
         }

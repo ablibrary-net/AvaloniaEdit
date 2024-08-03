@@ -1,4 +1,5 @@
-﻿// Copyright (c) 2014 AlphaSierraPapa for the SharpDevelop Team
+﻿#define NEWJJ 
+// Copyright (c) 2014 AlphaSierraPapa for the SharpDevelop Team
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy of this
 // software and associated documentation files (the "Software"), to deal in the Software
@@ -31,10 +32,14 @@ namespace AvaloniaEdit.Rendering
 		internal bool firstLineInParagraph;
 
 		public override double DefaultIncrementalTab => tabSize;
-
-		public override FlowDirection FlowDirection => FlowDirection.LeftToRight;
-		public override TextAlignment TextAlignment => TextAlignment.Left;
-		public override double LineHeight => DefaultTextRunProperties.FontRenderingEmSize * 1.35;
+#if NEWJJ
+        public override FlowDirection FlowDirection => FlowDirection.RightToLeft;//Newjj
+        public override TextAlignment TextAlignment => TextAlignment.Right;//Newjj
+#else
+        public override FlowDirection FlowDirection => FlowDirection.LeftToRight;
+        public override TextAlignment TextAlignment => TextAlignment.Left;
+#endif
+        public override double LineHeight => DefaultTextRunProperties.FontRenderingEmSize * 1.35;
 		public override bool FirstLineInParagraph => firstLineInParagraph;
 		public override TextRunProperties DefaultTextRunProperties => defaultTextRunProperties;
 

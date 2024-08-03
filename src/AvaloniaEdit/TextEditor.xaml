@@ -8,7 +8,8 @@
         <Border Background="{TemplateBinding Background}"
                 BorderBrush="{TemplateBinding BorderBrush}"
                 BorderThickness="{TemplateBinding BorderThickness}">
-          <ScrollViewer Focusable="False"
+                <!-- NEWJJ -->
+          <ScrollViewer Focusable="False" AllowAutoHide="False" 
                         Name="PART_ScrollViewer"
                         VerticalScrollBarVisibility="{TemplateBinding VerticalScrollBarVisibility}"
                         HorizontalScrollBarVisibility="{TemplateBinding HorizontalScrollBarVisibility}"

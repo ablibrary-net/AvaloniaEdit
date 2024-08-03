@@ -51,6 +51,8 @@ namespace AvaloniaEdit.Editing
 
         public void Show(Rect caretRectangle)
         {
+            // Adjust the caret rectangle to be 5px wider on each side newjj mohammad
+            // _caretRectangle = new Rect(caretRectangle.X, caretRectangle.Y, caretRectangle.Width + 5, caretRectangle.Height + 5);
             _caretRectangle = caretRectangle;
             _isVisible = true;
             StartBlinkAnimation();
