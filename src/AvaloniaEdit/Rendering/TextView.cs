@@ -74,6 +74,7 @@ namespace AvaloniaEdit.Rendering
         /// </summary>
         public TextView()
         {
+            LineSpacing = 1.5;
             Services.AddService(this);
 
             TextLayer = new TextLayer(this);
@@ -553,6 +554,8 @@ namespace AvaloniaEdit.Rendering
         public static readonly StyledProperty<IBrush> NonPrintableCharacterBrushProperty =
             AvaloniaProperty.Register<TextView, IBrush>("NonPrintableCharacterBrush", new SolidColorBrush(Color.FromArgb(145, 128, 128, 128)));
 
+        public double LineSpacing;
+        
         /// <summary>
         /// Gets/sets the Brush used for displaying non-printable characters.
         /// </summary>

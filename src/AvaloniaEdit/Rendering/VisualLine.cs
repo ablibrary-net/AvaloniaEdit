@@ -298,7 +298,7 @@ namespace AvaloniaEdit.Rendering
             _textLines = new ReadOnlyCollection<TextLine>(textLines);
             Height = 0;
             foreach (var line in textLines)
-                Height += line.Height;
+                Height += line.Height*_textView.LineSpacing;
         }
 
         /// <summary>
@@ -382,9 +382,9 @@ namespace AvaloniaEdit.Rendering
                         case VisualYPosition.LineTop:
                             return pos;
                         case VisualYPosition.LineMiddle:
-                            return pos + tl.Height / 2;
+                            return pos + tl.Height*_textView.LineSpacing / 2;
                         case VisualYPosition.LineBottom:
-                            return pos + tl.Height;
+                            return pos + tl.Height*_textView.LineSpacing;
                         case VisualYPosition.TextTop:
                             return pos + tl.Baseline - _textView.DefaultBaseline;
                         case VisualYPosition.TextBottom:
@@ -397,7 +397,7 @@ namespace AvaloniaEdit.Rendering
                             throw new ArgumentException("Invalid yPositionMode:" + yPositionMode);
                     }
                 }
-                pos += tl.Height;
+                pos += tl.Height*_textView.LineSpacing;
             }
             throw new ArgumentException("textLine is not a line in this VisualLine");
         }
@@ -422,7 +422,7 @@ namespace AvaloniaEdit.Rendering
             var pos = VisualTop;
             foreach (var tl in TextLines)
             {
-                pos += tl.Height;
+                pos += tl.Height*_textView.LineSpacing;
                 if (visualTop + epsilon < pos)
                     return tl;
             }
@@ -786,6 +786,7 @@ namespace AvaloniaEdit.Rendering
     // TODO: can inherit from Layoutable, but dev tools crash
     internal sealed class VisualLineDrawingVisual : Control
     {
+        private double LineSpacing = 1.5;
         public VisualLine VisualLine { get; }
         public double LineHeight { get; }
         internal bool IsAdded { get; set; }
@@ -793,7 +794,7 @@ namespace AvaloniaEdit.Rendering
         public VisualLineDrawingVisual(VisualLine visualLine)
         {
             VisualLine = visualLine;
-            LineHeight = VisualLine.TextLines.Sum(textLine => textLine.Height);
+            LineHeight = VisualLine.TextLines.Sum(textLine => textLine.Height*LineSpacing);
         }
 
         public override void Render(DrawingContext context)
@@ -806,7 +807,7 @@ namespace AvaloniaEdit.Rendering
 #else
                 textLine.Draw(context, new Point(0, pos));
 #endif
-                pos += textLine.Height;
+                pos += (textLine.Height*LineSpacing);
             }
         }
     }
