@@ -48,17 +48,7 @@
         </StackPanel>
         
         <Border>
-            <!--<Border.ContextMenu>
-                <ContextMenu>
-                    
-                <MenuItem Header="2" InputGesture="(Key.C, KeyModifiers.Control)" ></MenuItem>
-                <MenuItem Header="2" ></MenuItem>
-                <MenuItem Header="2" ></MenuItem>
-                <MenuItem Header="2"
-                       ></MenuItem>
-                </ContextMenu>
-            </Border.ContextMenu>-->
-        <AvalonEdit:TextEditor Name="Editor"
+          <AvalonEdit:TextEditor Name="Editor"
                                FontFamily="Cascadia Code,Consolas,Menlo,Monospace"
                                Margin="30" 
                                HorizontalScrollBarVisibility="Auto"
