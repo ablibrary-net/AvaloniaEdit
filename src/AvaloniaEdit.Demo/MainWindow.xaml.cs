@@ -43,30 +43,19 @@ namespace AvaloniaEdit.Demo
         private int _currentTheme = (int)ThemeName.DarkPlus;
         private CustomMargin _customMargin;
 
-        
-        
         public MainWindow()
         {
             InitializeComponent();
 
             _textEditor = this.FindControl<TextEditor>("Editor");
+         //newjj
             _textEditor.HorizontalScrollBarVisibility = Avalonia.Controls.Primitives.ScrollBarVisibility.Auto;
             _textEditor.VerticalScrollBarVisibility = Avalonia.Controls.Primitives.ScrollBarVisibility.Auto;
-            
+         // newjj
+
 
             _textEditor.Background = Brushes.Transparent;
             _textEditor.ShowLineNumbers = true;
-            
-          
-             _textEditor.ContextMenu = new ContextMenu
-            {
-                ItemsSource = new List<MenuItem>
-                {
-                    new MenuItem { Header = "Copy", InputGesture = new KeyGesture(Key.C, KeyModifiers.Control) },
-                    new MenuItem { Header = "Paste", InputGesture = new KeyGesture(Key.V, KeyModifiers.Control) },
-                    new MenuItem { Header = "Cut", InputGesture = new KeyGesture(Key.X, KeyModifiers.Control) }
-                }
-            };
             _textEditor.TextArea.Background = this.Background;
             _textEditor.TextArea.TextEntered += textEditor_TextArea_TextEntered;
             _textEditor.TextArea.TextEntering += textEditor_TextArea_TextEntering;
@@ -292,7 +281,7 @@ namespace AvaloniaEdit.Demo
             //newjj mohammad
 
         }
-        
+
         private void AddControlButton_Click(object sender, RoutedEventArgs e)
         {
             _generator.controls.Add(new Pair(_textEditor.CaretOffset, new Button() { Content = "Click me", Cursor = Cursor.Default }));
