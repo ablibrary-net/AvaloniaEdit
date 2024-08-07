@@ -104,7 +104,7 @@ namespace AvaloniaEdit.Rendering
 
 		private void AddRectangle(Size pixelSize, Rect r)
 		{
-			if (AlignToWholePixels) {
+			if (!AlignToWholePixels) {
 				double halfBorder = 0.5 * BorderThickness;
 				AddRectangle(PixelSnapHelpers.Round(r.Left - halfBorder, pixelSize.Width) + halfBorder,
 							 PixelSnapHelpers.Round(r.Top - halfBorder, pixelSize.Height) + halfBorder,
@@ -187,7 +187,7 @@ namespace AvaloniaEdit.Rendering
 				throw new ArgumentNullException("line");
 			return ProcessTextLines(textView, line, startVc, endVc);
 		}
-
+// mohammad ; selections should be here
 		private static IEnumerable<Rect> ProcessTextLines(TextView textView, VisualLine visualLine, int segmentStartVc, int segmentEndVc)
 		{
 			TextLine lastTextLine = visualLine.TextLines.Last();
@@ -199,7 +199,7 @@ namespace AvaloniaEdit.Rendering
 				int visualStartCol = visualLine.GetTextLineVisualStartColumn(line);
 				int visualEndCol = visualStartCol + line.Length;
 				if (line == lastTextLine)
-					visualEndCol -= 1; // 1 position for the TextEndOfParagraph
+					visualEndCol -= 1; //newjj 1 position for the TextEndOfParagraph
 				else
 					visualEndCol -= line.TrailingWhitespaceLength;
 
@@ -236,6 +236,8 @@ namespace AvaloniaEdit.Rendering
 						}
 					}
 				}
+				// mohammad ; selections should be here2
+
 				// If the segment ends in virtual space, extend the last rectangle with the rectangle the portion of the selection
 				// after the line end.
 				// Also, when word-wrap is enabled and the segment continues into the next line, extend lastRect up to the end of the line.
