@@ -252,7 +252,9 @@ namespace AvaloniaEdit.Rendering
 						// For word-wrapped lines, visualEndCol doesn't include the whitespace hidden by the wrap,
 						// so we'll need to include it here.
 						// For the last line, visualEndCol already includes the whitespace.
-						left = (line == lastTextLine ? line.WidthIncludingTrailingWhitespace : line.Width);
+						//newjj selection fix alpha
+						left = visualLine.GetTextLineVisualXPosition(lastTextLine, segmentStartVc);
+						//left = (line == lastTextLine ? line.WidthIncludingTrailingWhitespace : line.Width);
 					}
 					if (line != lastTextLine || segmentEndVc == int.MaxValue) {
 						// If word-wrap is enabled and the segment continues into the next line,
