@@ -74,7 +74,6 @@ namespace AvaloniaEdit.Rendering
         /// </summary>
         public TextView()
         {
-            LineSpacing = 1; // مقدار غیر یک فعلا در اسکرول سلکشن رو به پایین مشکل ساز است
             Services.AddService(this);
 
             TextLayer = new TextLayer(this);
@@ -554,7 +553,6 @@ namespace AvaloniaEdit.Rendering
         public static readonly StyledProperty<IBrush> NonPrintableCharacterBrushProperty =
             AvaloniaProperty.Register<TextView, IBrush>("NonPrintableCharacterBrush", new SolidColorBrush(Color.FromArgb(145, 128, 128, 128)));
 
-        public double LineSpacing;
         
         /// <summary>
         /// Gets/sets the Brush used for displaying non-printable characters.
@@ -1503,7 +1501,7 @@ namespace AvaloniaEdit.Rendering
 
                 _wideSpaceWidth = Math.Max(1, line.WidthIncludingTrailingWhitespace);
                 _defaultBaseline = Math.Max(1, line.Baseline);
-                _defaultLineHeight = Math.Max(1, line.Height);
+                _defaultLineHeight = Math.Max(1, line.Height); 
             }
             else
             {
